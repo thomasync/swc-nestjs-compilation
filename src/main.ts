@@ -9,7 +9,9 @@ async function bootstrap() {
 
 async function bootstrapCli() {
   const cli = await NestFactory.create(CliModule);
+  cli.enableShutdownHooks();
   await cli.init();
+  await cli.close();
 }
 
 const isCli = process.env.NODE_ENV && process.env.NODE_ENV.startsWith('cli');
